@@ -5,24 +5,35 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**/*.ts --fix"
   },
+  "repository": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
     "@types/node": "^25.3.0",
-    "eslint": "^10.0.0",
-    "globals": "^17.3.0",
-    "jiti": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.8.1",
+    "prisma": "^6.4.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "express": "^5.2.1",
     "undici-types": "^7.18.2"
   }
 }
