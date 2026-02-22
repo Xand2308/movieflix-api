@@ -8,4 +8,5 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
+  "prisma.ignoreVersionMismatch": true
 }
