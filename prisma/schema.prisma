@@ -1,14 +1,30 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model genres {
+  id     Int      @id @default(autoincrement())
+  name   String?  @db.VarChar(100)
+  movies movies[]
+}
+
+model languages {
+  id     Int      @id @default(autoincrement())
+  name   String?  @db.VarChar(100)
+  movies movies[]
+}
+
+model movies {
+  id           Int        @id @default(autoincrement())
+  title        String?    @db.VarChar(100)
+  release_date DateTime?  @db.Date
+  genres_id    Int?
+  languages_id Int?
+  oscar_count  Int?
+  genres       genres?    @relation(fields: [genres_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_genre")
+  languages    languages? @relation(fields: [languages_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_language")
 }
