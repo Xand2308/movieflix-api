@@ -65,7 +65,7 @@ app.put('/movies/:id', async (req, res) => {
     });
 
     if (!movie) {
-      return res.status(404).send({ message: 'Filme Não Econtrado!'});
+      return res.status(404).send({ message: 'Filme Não Econtrado!' });
     }
 
     const data = { ...req.body };
@@ -81,10 +81,30 @@ app.put('/movies/:id', async (req, res) => {
       data: data
     });
   } catch (error) {
-    return res.status(500).send({ message: 'Falha ao Atualizar o Filme!'});
+    return res.status(500).send({ message: 'Falha ao Atualizar o Filme!' });
   }
 
   // Retornar o status correrto informado que o filme foi atualizado
+
+  res.status(200).send();
+});
+
+app.delete('/movies/:id', async (req, res) => {
+  const id = Number(req.params.id);
+
+  try {
+    const movie = await prisma.movie.findUnique({ where: { id } });
+
+    if (!movie) {
+      return res.status(404).send({ message: 'O filme Não Foi Encontrado ' });
+    }
+
+    await prisma.movie.delete({ where: { id } });
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ message: 'Não Foi Possivel Remover O Filme' });
+  }
 
   res.status(200).send();
 });
