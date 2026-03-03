@@ -73,7 +73,7 @@ app.put('/movies/:id', async (req, res) => {
     }
 
     const data = { ...req.body };
-    data.release_date = data.relaese_date
+    data.release_date = data.release_date
       ? new Date(data.release_date)
       : undefined;
 
